@@ -12,10 +12,10 @@ let millisecondsBetweenClicks = convertBpmToMilliseconds(currentTempo);
 
 // Function to convert bpm to milliseconds for setInterval() function
 function convertBpmToMilliseconds(bpm) {
-    let beatsInASecond = bpm/60;
-    let milliseconds = beatsInASecond*1000
-    return milliseconds;
-}
+    const beatsPerSecond = bpm / 60;
+    const msPerBeat = 1000 / beatsPerSecond;
+    return msPerBeat;
+  }
 
 // Add an event listener to the tempo range input
 tempoRangeInput.addEventListener('input', function() {
@@ -25,19 +25,31 @@ tempoRangeInput.addEventListener('input', function() {
   tempoDisplay.textContent = `${currentTempo} BPM`;
   //set milliseconds equal to return value of convert function
   millisecondsBetweenClicks = convertBpmToMilliseconds(currentTempo);
+
+  //THIS SECTION ALLOWS TEMPO TO BE ADJUSTED DURING PLAYBACK
+  //stop current tempo when slider is adjusted
+  clearInterval(intervalID);
+  //new interval and interval ID for new tempo. 
+  intervalID = setInterval(() => {
+    clickSound.currentTime = 0;
+    clickSound.play();
+}, millisecondsBetweenClicks);
+
 });
 
+let intervalID
 
 start.addEventListener('click', () => {
-    setInterval(() => {
+    intervalID = setInterval(() => {
         clickSound.currentTime = 0;
         clickSound.play();
-        console.log('click');
-    }, 300);
+    }, millisecondsBetweenClicks);
 });
 
 
-//SOMETHING WRONG WITH MILLISECONDSBETWEENCLICKS EVERYTHING ELSE WORKING 
+stop.addEventListener('click', () => {
+    clearInterval(intervalID);
+});
 
 
 
