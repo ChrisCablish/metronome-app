@@ -8,8 +8,10 @@ body {
   height: 100vh; }
 
 .container {
-  margin: auto; 
-  text-align: center;
-}
+  margin: auto;
+  text-align: center; }
+
+#tempo-display {
+  font-size: 2rem; }
 
 /*# sourceMappingURL=style.css.map */
