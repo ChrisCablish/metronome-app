@@ -1,3 +1,15 @@
+.container {
+  margin: 0 auto; }
 
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh; }
+
+.container {
+  margin: auto; 
+  text-align: center;
+}
 
 /*# sourceMappingURL=style.css.map */
