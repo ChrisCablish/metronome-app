@@ -1,5 +1,3 @@
-console.log('hello');
-
 const tempoRangeInput = document.getElementById('tempo-range');
 const tempoDisplay = document.getElementById('tempo-display');
 const clickSound = document.getElementById('click-sound');
@@ -54,6 +52,8 @@ stop.addEventListener('click', () => {
     togglePlay = false;
     clearInterval(intervalID);
 });
+
+
 
 
 
